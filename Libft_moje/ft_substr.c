@@ -12,27 +12,52 @@
 
 #include "libft.h"
 
-char
-	*ft_substr(char const *s, unsigned int start, size_t len)
+char    *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+    char    *sub;
+    size_t  s_len;
 
-	str = (char*)malloc(sizeof(*s) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+    if (!s)
+        return (NULL);
+    s_len = ft_strlen(s);
+    if (start >= s_len)
+        return (ft_strdup(""));
+    if (len > s_len - start)
+        len = s_len - start;
+    sub = (char *)malloc(sizeof(char) * (len + 1));
+    if (!sub)
+        return (NULL);
+    ft_strlcpy(sub, s + start, len + 1);
+    return (sub);
 }
+/* 
+// Allocates memory (using malloc(3)) and returns a substring from the string ’s’.
+// The substring starts at index ’start’ and has a maximum length of ’len’
+
+#include <stdio.h>
+#include "libft.h"
+
+int main(void)
+{
+    char    *original = "Libft is awesome!";
+    char    *substr
+
+    substr = ft_substr(original, 6, 2);
+    printf("Substring (start = 6, len = 2): \"%s\"\n", substr);
+    free(substr);
+
+    substr = ft_substr(original, 50, 5);
+    printf("Substring (start = 50, len = 5): \"%s\"\n", substr);
+    free(substr);
+
+    substr = ft_substr(original, 10, 100);
+    printf("Substring (start = 10, len = 100): \"%s\"\n", substr);
+    free(substr);
+
+    substr = ft_substr("", 2, 5);
+    printf("Substring (start = 2, len = 5): \"%s\"\n", substr);
+    free(substr);
+
+    return (0);
+}
+ */

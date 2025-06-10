@@ -12,33 +12,38 @@
 
 #include "libft.h"
 
-static int
-	ft_abs(int nbr)
+void    ft_putnbr_fd(int n, int fd)
 {
-	return ((nbr < 0) ? -nbr : nbr);
-}
+    char    c;
 
-void
-	ft_putnbr_fd(int n, int fd)
+    if (n == -2147483648)
+    {
+        write(fd, "-2147483648", 11);
+        return;
+    }
+    if (n < 0)
+    {
+        write(fd, "-", 1);
+        n = -n;
+    }
+    if (n >= 10)
+        ft_putnbr_fd(n / 10, fd);
+    c = '0' + (n % 10);
+    write(fd, &c, 1);
+}
+/* 
+ // Outputs the integer ’n’ to the specified file descriptor.
+
+ int main(void)
 {
-	char	str[13];
-	int		is_neg;
-	int		length;
+    int     numbers[] = {0, -42, 12345, -2147483648, 2147483647};
+    size_t  i;
 
-	is_neg = (n < 0);
-	ft_bzero(str, 13);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
-	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
-	}
-	if (is_neg)
-		str[length] = '-';
-	else if (length > 0)
-		length--;
-	while (length >= 0)
-		write(fd, &str[length--], 1);
-}
+    for (i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++)
+    {
+        printf("ft_putnbr_fd(%d): ", numbers[i]);
+        ft_putnbr_fd(numbers[i], 1);
+        printf("\n");
+    }
+    return (0);
+} */

@@ -12,91 +12,88 @@
 
 #include "libft.h"
 
-static char
-	**ft_alloc_split(char const *s, char c)
+static size_t   ft_word_count(char const *s, char c)
 {
-	size_t	i;
-	char	**split;
-	size_t	total;
+    size_t  count;
 
-	i = 0;
-	total = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			total++;
-		i++;
-	}
-	split = (char**)malloc(sizeof(s) * (total + 2));
-	if (!split)
-		return (NULL);
-	return (split);
+    count = 0;
+    while (*s)
+    {
+        while (*s == c)
+            s++;
+        if (*s)
+            count++;
+        while (*s && *s != c)
+            s++;
+    }
+    return (count);
 }
 
-void
-	*ft_free_all_split_alloc(char **split, size_t elts)
+static char *ft_word_dup(const char *s, char c)
 {
-	size_t	i;
+    size_t  len;
+    char    *word;
 
-	i = 0;
-	while (i < elts)
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-	return (NULL);
+    len = 0;
+    while (s[len] && s[len] != c)
+        len++;
+    word = (char *)malloc(sizeof(char) * (len + 1));
+    if (!word)
+        return (NULL);
+    ft_strlcpy(word, s, len + 1);
+    return (word);
 }
 
-static void
-	*ft_split_range(char **split, char const *s,
-		t_split_next *st, t_split_next *lt)
+char    **ft_split(char const *s, char c)
 {
-	split[lt->length] = ft_substr(s, st->start, st->length);
-	if (!split[lt->length])
-		return (ft_free_all_split_alloc(split, lt->length));
-	lt->length++;
-	return (split);
-}
+    char    **arr;
+    size_t  i;
 
-static void
-	*ft_split_by_char(char **split, char const *s, char c)
+    if (!s)
+        return (NULL);
+    arr = (char **)malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+    if (!arr)
+        return (NULL);
+    i = 0;
+    while (*s)
+    {
+        while (*s == c)
+            s++;
+        if (*s)
+        {
+            arr[i++] = ft_word_dup(s, c);
+            while (*s && *s != c)
+                s++;
+        }
+    }
+    arr[i] = NULL;
+    return (arr);
+}
+/* 
+// Allocates memory (using malloc(3)) and returns an array of strings obtained by splitting ’s’ using
+// the character ’c’ as a delimiter. The array must end with a NULL pointer
+
+int main(void)
 {
-	size_t			i;
-	t_split_next	st;
-	t_split_next	lt;
+    char    *str = "Hello 42 Prague!";
+    char    delimiter = ' ';
+    char    **split;
+    size_t  i;
 
-	i = 0;
-	lt.length = 0;
-	lt.start = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-		{
-			st.start = lt.start;
-			st.length = (i - lt.start);
-			if (i > lt.start && !ft_split_range(split, s, &st, &lt))
-				return (NULL);
-			lt.start = i + 1;
-		}
-		i++;
-	}
-	st.start = lt.start;
-	st.length = (i - lt.start);
-	if (i > lt.start && i > 0 && !ft_split_range(split, s, &st, &lt))
-		return (NULL);
-	split[lt.length] = 0;
-	return (split);
-}
+    split = ft_split(str, delimiter);
+    if (!split)
+    {
+        printf("Allocation failed.\n");
+        return (1);
+    }
 
-char
-	**ft_split(char const *s, char c)
-{
-	char	**split;
-
-	if (!(split = ft_alloc_split(s, c)))
-		return (NULL);
-	if (!ft_split_by_char(split, s, c))
-		return (NULL);
-	return (split);
-}
+    i = 0;
+    while (split[i])
+    {
+        printf("Word %zu: \"%s\"\n", i + 1, split[i]);
+        free(split[i]);
+        i++;
+    }
+    free(split);
+    return (0);
+} */
