@@ -38,7 +38,7 @@ int ft_atoi(const char *str)
     return (res * is_neg);
 }
 
-
+/* 
 // converts a string to an integer by interpreting its numeric characters
 
 int main(void)
@@ -59,4 +59,4 @@ int main(void)
         printf("\"%s\" -> %d\n", test_cases[i], result);
     }
     return (0);
-}
+} */
