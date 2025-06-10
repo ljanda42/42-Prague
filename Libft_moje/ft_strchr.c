@@ -12,21 +12,50 @@
 
 #include "libft.h"
 
-char
-	*ft_strchr(const char *s, int c)
+char    *ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char*)(s + i));
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char*)(s + i));
-	return (NULL);
+    while (*s)
+    {
+        if (*s == (char)c)
+            return ((char *)s);
+        s++;
+    }
+    if ((char)c == '\0')
+        return ((char *)s);
+    return (NULL);
 }
+/* 
+// ft_strchr searches for the first occurrence of a character in a string and returns a pointer to its position
+
+int	main(void)
+{
+    const char *str = "Hello, World!";
+    char c = 'L';
+    char *result;
+
+    // Test case: Character found
+    result = ft_strchr(str, c);
+    if (result != NULL)
+        printf("Character '%c' found at position: %ld\n", c, result - str);
+    else
+        printf("Character '%c' not found.\n", c);
+
+    // Test case: Character not found
+    c = 'x';
+    result = ft_strchr(str, c);
+    if (result != NULL)
+        printf("Character '%c' found at position: %ld\n", c, result - str);
+    else
+        printf("Character '%c' not found.\n", c);
+
+    // Test case: Searching for null terminator
+    c = '\0';
+    result = ft_strchr(str, c);
+    if (result != NULL)
+        printf("Null terminator found at position: %ld\n", result - str);
+    else
+        printf("Null terminator not found.\n");
+
+    return (0);
+}
+ */

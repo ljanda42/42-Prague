@@ -7,6 +7,12 @@
 #include <string.h>
 #include "libft.h"
 
+printf("%d\n", isalpha('A'));  // Výstup: 1
+printf("%d\n", isalpha('z'));  // Výstup: 1
+printf("%d\n", isalpha('3'));  // Výstup: 0
+printf("%d\n", isalpha('@'));  // Výstup: 0
+
+
 // https://opensource.apple.com/source/Libc/Libc-825.25/string/strlcat.c.auto.html
 size_t strlcat(char * dst, const char * src, size_t maxlen) {
     const size_t srclen = strlen(src);

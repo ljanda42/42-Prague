@@ -10,32 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-size_t
-	ft_strlcat(char *dst, const char *src, size_t size)
+size_t  ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dest_length;
-	size_t	src_length;
+    size_t  dest_len;
+    size_t  src_len;
+    size_t  i;
 
-	src_length = ft_strlen(src);
-	dest_length = ft_strlen(dst);
-	j = dest_length;
-	i = 0;
-	if (dest_length < size - 1 && size > 0)
-	{
-		while (src[i] && dest_length + i < size - 1)
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
-		dst[j] = 0;
-	}
-	if (dest_length >= size)
-		dest_length = size;
-	return (dest_length + src_length);
+    dest_len = ft_strlen(dst);
+    src_len = ft_strlen(src);
+    i = 0;
+    if (size <= dest_len)
+        return (size + src_len);
+    while (src[i] && dest_len + i < size - 1)
+    {
+        dst[dest_len + i] = src[i];
+        i++;
+    }
+    dst[dest_len + i] = '\0';
+    return (dest_len + src_len);
 }
+
+/* 
+// ft_strlcat safely appends src to dst, ensuring null termination within the given buffer size
+// while returning the total length the resulting string would have been.
+
+int	main()
+{
+char dest[15] = "Hello";
+size_t len = strlcat(dest, ", world!", sizeof(dest));
+
+printf("Result: %s\n", dest);
+printf("Total length: %zu\n", len);
+
+return 0;
+}
+ */

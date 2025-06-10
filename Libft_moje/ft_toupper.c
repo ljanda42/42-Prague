@@ -19,3 +19,6 @@ int
 		c -= 32;
 	return (c);
 }
+
+// The ft_toupper function converts a lowercase letter to its uppercase equivalent.
+// If the input character is already uppercase or not a letter, it remains unchanged.

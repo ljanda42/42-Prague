@@ -12,19 +12,61 @@
 
 #include "libft.h"
 
-char
-	*ft_strrchr(const char *s, int c)
+char    *ft_strrchr(const char *s, int c)
 {
-	int	i;
+    char    *last_occurrence;
 
-	i = 0;
-	while (s[i])
-		i++;
-	while (i >= 0)
-	{
-		if (s[i] == (char)c)
-			return ((char*)(s + i));
-		i--;
-	}
-	return (NULL);
+    last_occurrence = NULL;
+    while (*s)
+    {
+        if (*s == (char)c)
+            last_occurrence = (char *)s;
+        s++;
+    }
+    if ((char)c == '\0')
+        return ((char *)s);
+    return (last_occurrence);
 }
+/* 
+// ft_strrchr finds the last occurrence of a character in a string and returns a pointer to it
+
+int main(void)
+{
+    const char *str = "Hello, World!";
+    char c;
+    char *result;
+
+    // Test case: Character appears multiple times
+    c = 'l';
+    result = ft_strrchr(str, c);
+    if (result != NULL)
+        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+    else
+        printf("Character '%c' not found.\n", c);
+
+    // Test case: Character appears once
+    c = 'W';
+    result = ft_strrchr(str, c);
+    if (result != NULL)
+        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+    else
+        printf("Character '%c' not found.\n", c);
+
+    // Test case: Character not in string
+    c = 'x';
+    result = ft_strrchr(str, c);
+    if (result != NULL)
+        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+    else
+        printf("Character '%c' not found.\n", c);
+
+    // Test case: Searching for null terminator
+    c = '\0';
+    result = ft_strrchr(str, c);
+    if (result != NULL)
+        printf("Null terminator found at position: %ld\n", result - str);
+    else
+        printf("Null terminator not found.\n");
+
+    return (0);
+} */

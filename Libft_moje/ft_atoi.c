@@ -12,24 +12,51 @@
 
 #include "libft.h"
 
-int
-	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int	i;
-	int	is_neg;
-	int	res;
+    int i;
+    int is_neg;
+    int res;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
-			str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
-		i++;
-	is_neg = (str[i] == '-') ? -1 : 1;
-	if (is_neg == -1 || str[i] == '+')
-		i++;
-	res = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-		res = (res * 10) + (str[i++] - '0');
-	return (res * is_neg);
+    i = 0;
+    while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+        i++;
+    is_neg = 1;
+    if (str[i] == '-')
+    {
+        is_neg = -1;
+        i++;
+    }
+    else if (str[i] == '+')
+        i++;
+    res = 0;
+    while (str[i] >= '0' && str[i] <= '9')
+    {
+        res = (res * 10) + (str[i] - '0');
+        i++;
+    }
+    return (res * is_neg);
+}
+
+
+// converts a string to an integer by interpreting its numeric characters
+
+int main(void)
+{
+    const char *test_cases[] = {
+        "42", "-42", "   123", "+123", "0", "-0",
+        "2147483647", "-2147483648", "99999999999999",
+        "abcd123", "123abcd", "", "   ",
+        "12 34", "--12", "++12", " -+12"
+    };
+    size_t i;
+    int result;
+
+    printf("Testing ft_atoi:\n");
+    for (i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++)
+    {
+        result = ft_atoi(test_cases[i]);
+        printf("\"%s\" -> %d\n", test_cases[i], result);
+    }
+    return (0);
 }

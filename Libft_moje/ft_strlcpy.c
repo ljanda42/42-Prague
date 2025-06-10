@@ -12,22 +12,36 @@
 
 #include "libft.h"
 
-size_t
-	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+    size_t i = 0;
 
-	i = 0;
-	if (size > 0)
+    if (size)
 	{
-		while (src[i] && i < (size - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
-	}
-	while (src[i])
-		i++;
-	return (i);
+        while (src[i] && i < size - 1) {
+            dst[i] = src[i];
+            i++;
+        }
+        dst[i] = '\0';
+    }
+
+    while (src[i])
+        i++;
+
+    return (i);
 }
+
+/*
+// ft_strlcpy safely copies a string from src to dst, ensuring null termination
+// and preventing buffer overflows by limiting the number of copied bytes.
+
+int main() {
+    char dest[10];
+    size_t len = strlcpy(dest, "Hello, world!", sizeof(dest));
+
+    printf("Copied string: %s\n", dest);
+    printf("Original length: %zu\n", len);
+
+    return 0;
+}
+*/

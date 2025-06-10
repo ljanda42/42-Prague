@@ -19,3 +19,6 @@ int
 		c += 32;
 	return (c);
 }
+
+// The tolower function in C converts an uppercase letter to its lowercase equivalent.
+// If the input character is already lowercase or not a letter, it remains unchanged.

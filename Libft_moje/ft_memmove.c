@@ -12,30 +12,50 @@
 
 #include "libft.h"
 
-void
-	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+	size_t i;
+	unsigned char *d;
+	const unsigned char *s;
 
-	if (!dst || !src)
-		return (NULL);
-	if (dst > src)
-	{
-		i = (int)len - 1;
-		while (i >= 0)
-		{
-			*(char*)(dst + i) = *(char*)(src + i);
-			i--;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < (int)len)
-		{
-			*(char*)(dst + i) = *(char*)(src + i);
-			i++;
-		}
-	}
-	return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+
+    if (d > s) {
+        i = len;
+        while (i > 0) {
+            i--;
+            d[i] = s[i];
+        }
+    } else {
+        i = 0;
+        while (i < len) {
+            d[i] = s[i];
+            i++;
+        }
+    }
+    return dst;
 }
+
+
+/*
+// memmove safely copies n bytes from src to dest, ensuring correct behavior even when memory regions overlap
+
+int main() {
+    char src1[] = "Hello, Libft!";
+    char dest1[20];
+    char src2[] = "Overlap test!";
+    
+    printf("=== Test 1: Non-overlapping copy ===\n");
+    printf("Before memmove: %s\n", dest1);
+    ft_memmove(dest1, src1, strlen(src1) + 1);
+    printf("After memmove: %s\n", dest1);
+    
+    printf("\n=== Test 2: Overlapping copy ===\n");
+    printf("Before memmove: %s\n", src2);
+    ft_memmove(src2 + 3, src2, 7);
+    printf("After memmove: %s\n", src2);
+    
+    return 0;
+}
+*/
