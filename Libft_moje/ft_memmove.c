@@ -14,29 +14,32 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t i;
-	unsigned char *d;
-	const unsigned char *s;
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
-
-    if (d > s) {
-        i = len;
-        while (i > 0) {
-            i--;
-            d[i] = s[i];
-        }
-    } else {
-        i = 0;
-        while (i < len) {
-            d[i] = s[i];
-            i++;
-        }
-    }
-    return dst;
+	if (d > s)
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			d[i] = s[i];
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dst);
 }
-
 
 /*
 // memmove safely copies n bytes from src to dest, ensuring correct behavior even when memory regions overlap

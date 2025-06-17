@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljanda <ljanda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,13 @@
 
 #include "libft.h"
 
-void    ft_striteri(char *s, void (*f)(unsigned int, char *))
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    unsigned int    i;
+    unsigned int i;
 
     if (!s || !f)
         return;
+
     i = 0;
     while (s[i])
     {
@@ -25,6 +26,16 @@ void    ft_striteri(char *s, void (*f)(unsigned int, char *))
         i++;
     }
 }
+
+/*
+int main(void)
+{
+	char *str = "hello";
+
+	ft_striteri(str, &ft_putstr);
+	return (0);
+}
+*/
 /* 
 // Applies the function ’f’ to each character of the string passed as argument, passing its index as
 // the first argument. Each character is passed by address to ’f’ so it can be modified if necessary.

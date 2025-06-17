@@ -18,7 +18,7 @@
 
 //  # include <stdio.h>
 //  remove this comment "stdio.h" just temporaly for testing mains with printf...
-/* structure needed in bonus part which I am not likely to do
+/* structure needed in bonus part which I am not likely to do */
 typedef	struct	s_list
 {
 	void			*content;
@@ -29,7 +29,7 @@ typedef struct	s_split_next
 {
 	size_t start;
 	size_t length;
-}				t_split_next; */
+}				t_split_next;
 
 int				ft_atoi(const char *str);
 

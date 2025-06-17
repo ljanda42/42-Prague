@@ -12,50 +12,52 @@
 
 #include "libft.h"
 
-static size_t   ft_num_length(int n)
+static size_t	ft_num_length(int n)
 {
-    size_t          length;
-    unsigned int    num;
+	unsigned int	num;
+	size_t			length;
 
-    length = 1;
-    if (n < 0)
-        length++;
-    num = n;
-    if (n < 0)
-        num = -n;
-    while (num >= 10)
-    {
-        num /= 10;
-        length++;
-    }
-    return (length);
+	length = 1;
+	if (n < 0)
+		length++;
+	num = n;
+	if (n < 0)
+		num = -n;
+	while (num >= 10)
+	{
+		num /= 10;
+		length++;
+	}
+	return (length);
 }
 
-char    *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    char            *str;
-    size_t          length;
-    unsigned int    num;
+	char			*str;
+	size_t			length;
+	unsigned int	num;
 
-    length = ft_num_length(n);
-    str = (char *)ft_calloc(length + 1, sizeof(char));
-    if (!str)
-        return (NULL);
-    num = n;
-    if (n < 0)
-        num = -n;
-    str[length] = '\0';
-    while (length--)
-    {
-        str[length] = '0' + (num % 10);
-        num /= 10;
-    }
-    if (n < 0)
-        str[0] = '-';
-    return (str);
+	length = ft_num_length(n);
+	str = (char *)ft_calloc(length + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	num = n;
+	if (n < 0)
+		num = -n;
+	str[length] = '\0';
+	while (length--)
+	{
+		str[length] = '0' + (num % 10);
+		num /= 10;
+	}
+	if (n < 0)
+		str[0] = '-';
+	return (str);
 }
+
 /* 
-// Allocates memory (using malloc(3)) and returns a string representing the integer received as an argument. Negative numbers must be handled.
+// Allocates memory (using malloc(3)) and returns a string representing
+// the integer received as an argument. Negative numbers must be handled.
 
 int main(void)
 {
