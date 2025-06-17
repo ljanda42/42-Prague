@@ -12,20 +12,21 @@
 
 #include "libft.h"
 
-char    *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-    char    *str;
-    size_t  len;
+	char	*str;
+	size_t	len;
 
-    len = ft_strlen(s1) + 1;
-    str = (char *)malloc(len);
-    if (!str)
-        return (NULL);
-    ft_strlcpy(str, s1, len);
-    return (str);
+	len = ft_strlen(s1) + 1;
+	str = (char *)malloc(len);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, len);
+	return (str);
 }
 /* 
-// duplicates a string by allocating memory for a copy and returning a pointer to it
+// duplicates a string by allocating memory 
+// for a copy and returning a pointer to it
 
 int	main()
 {

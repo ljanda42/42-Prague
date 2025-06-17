@@ -12,23 +12,25 @@
 
 #include "libft.h"
 
-char    *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    char    *last_occurrence;
+	char	*last_occurrence;
 
-    last_occurrence = NULL;
-    while (*s)
-    {
-        if (*s == (char)c)
-            last_occurrence = (char *)s;
-        s++;
-    }
-    if ((char)c == '\0')
-        return ((char *)s);
-    return (last_occurrence);
+	last_occurrence = NULL;
+	while (*s)
+	{
+		if (*s == (char)c)
+			last_occurrence = (char *)s;
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (last_occurrence);
 }
+
 /* 
-// ft_strrchr finds the last occurrence of a character in a string and returns a pointer to it
+// ft_strrchr finds the last occurrence of a character
+// in a string and returns a pointer to it
 
 int main(void)
 {
@@ -40,7 +42,8 @@ int main(void)
     c = 'l';
     result = ft_strrchr(str, c);
     if (result != NULL)
-        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+        printf("Last occurrence of '%c'
+		 found at position: %ld\n", c, result - str);
     else
         printf("Character '%c' not found.\n", c);
 
@@ -48,7 +51,8 @@ int main(void)
     c = 'W';
     result = ft_strrchr(str, c);
     if (result != NULL)
-        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+        printf("Last occurrence of '%c'
+		 found at position: %ld\n", c, result - str);
     else
         printf("Character '%c' not found.\n", c);
 
@@ -56,7 +60,8 @@ int main(void)
     c = 'x';
     result = ft_strrchr(str, c);
     if (result != NULL)
-        printf("Last occurrence of '%c' found at position: %ld\n", c, result - str);
+        printf("Last occurrence of '%c'
+		 found at position: %ld\n", c, result - str);
     else
         printf("Character '%c' not found.\n", c);
 

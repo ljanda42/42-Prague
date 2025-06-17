@@ -12,20 +12,21 @@
 
 #include "libft.h"
 
-char    *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-    while (*s)
-    {
-        if (*s == (char)c)
-            return ((char *)s);
-        s++;
-    }
-    if ((char)c == '\0')
-        return ((char *)s);
-    return (NULL);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 /* 
-// ft_strchr searches for the first occurrence of a character in a string and returns a pointer to its position
+// ft_strchr searches for the first occurrence of a character
+// in a string and returns a pointer to its position
 
 int	main(void)
 {
